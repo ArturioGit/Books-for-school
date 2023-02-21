@@ -1,0 +1,13 @@
+{% extends 'course/layout_with_sidebar.html' %}
+
+{% block content %}
+    <div class="about__course">
+        <div>
+                <div class="cover__book__details"><img src="{{ course.photo.url }}" class="img"> </div>
+            <div class="description__book details__description">
+                {{ course.description|truncatechars:800 }}
+            </div>
+        </div>
+        <div class="download__details"><a href="{{ course.pdf_file.url }}" class="download__button" download>Завантажити</a></div>
+        </div>
+{% endblock %}

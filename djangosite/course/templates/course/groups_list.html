@@ -1,0 +1,20 @@
+<div class="side__section__class">
+    <div>
+        {% if class_selected == 0 %}
+        <div class="selected">
+            Усі
+        </div>
+        {% else %}
+        <a href="{% url 'by_categories' 0 subject_selected %}">Усі</a>
+        {% endif %}
+    </div>
+    {% for group in class_list %}
+    {% if class_selected == group.number %}
+    <div class="selected">
+        {{ group.number }}
+    </div>
+    {% else %}
+    <a href="{% url 'by_categories' group.number subject_selected %}">{{ group.number }}</a>
+    {% endif %}
+    {% endfor %}
+</div>

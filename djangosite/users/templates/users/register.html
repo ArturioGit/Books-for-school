@@ -1,0 +1,61 @@
+{% extends 'course/layout.html' %}
+
+{% block content %}
+    <div class="form__box">
+        <form action="{% url 'register' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form__flex">
+                    <div>
+                        {% if form.username.errors %}
+                            <div class="input-error">{{ form.username }}</div>
+                        {% else %}
+                            <div>{{ form.username }}</div>
+                        {% endif %}
+                        <div>{{ form.username.errors }}</div>
+                    </div>
+                    <div>
+                        {% if form.first_name.errors %}
+                            <div class="input-error">{{ form.first_name }}</div>
+                        {% else %}
+                            <div>{{ form.first_name }}</div>
+                        {% endif %}
+                        <div>{{ form.first_name.errors }}</div>
+                    </div>
+                    <div>
+                        {% if form.last_name.errors %}
+                            <div class="input-error">{{ form.last_name }}</div>
+                        {% else %}
+                            <div>{{ form.last_name }}</div>
+                        {% endif %}
+                        <div>{{ form.last_name.errors }}</div>
+                    </div>
+                    <div>
+                        {% if form.email.errors %}
+                            <div class="input-error">{{ form.email }}</div>
+                        {% else %}
+                            <div>{{ form.email }}</div>
+                        {% endif %}
+                        <div>{{ form.email.errors }}</div>
+                    </div>
+                    <div>
+                        {% if form.password1.errors %}
+                            <div class="input-error">{{ form.password1 }}</div>
+                        {% else %}
+                            <div>{{ form.password1 }}</div>
+                        {% endif %}
+                        <div>{{ form.password1.errors }}</div>
+                    </div>
+                    <div>
+                        {% if form.password2.errors %}
+                            <div class="input-error">{{ form.password2 }}</div>
+                        {% else %}
+                            <div>{{ form.password2 }}</div>
+                        {% endif %}
+                        <div>{{ form.password2.errors }}</div>
+                    </div>
+
+                    <button class="form__submit" type="submit">Додати</button>
+                </div>
+        </form>
+    </div>
+{% endblock %}

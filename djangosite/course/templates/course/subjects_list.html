@@ -1,0 +1,20 @@
+<div class="side__section__subject">
+    <div>
+        {% if subject_selected == 'all' %}
+        <div class="selected">
+            Усі
+        </div>
+        {% else %}
+        <a href="{% url 'by_categories' class_selected 'all' %}">Усі</a>
+        {% endif %}
+    </div>
+    {% for subject in subject_list %}
+    {% if subject_selected == subject.slug %}
+    <div class="selected">
+        {{ subject.name }}
+    </div>
+    {% else %}
+    <a href="{% url 'by_categories' class_selected subject.slug %}">{{ subject.name }}</a>
+    {% endif %}
+    {% endfor %}
+</div>

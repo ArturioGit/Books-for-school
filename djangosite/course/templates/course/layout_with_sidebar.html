@@ -1,0 +1,15 @@
+{% extends 'course/layout.html' %}
+{% load course_tags %}
+{% block sidebar %}
+    <aside class="sidebar">
+        <h3>Клас</h3>
+        {% groups_list class_selected=class_selected subject_selected=subject_selected%}
+        <h3>Предмет</h3>
+        {% subjects_list class_selected=class_selected subject_selected=subject_selected%}
+        {% if user.is_authenticated %}
+        <div class="add-book-block">
+            <a href="{% url 'add_book'%}" class="add-book-href">Додати книжку</a>
+        </div>
+        {% endif %}
+    </aside>
+{% endblock sidebar %}

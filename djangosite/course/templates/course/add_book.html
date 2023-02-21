@@ -1,0 +1,52 @@
+{% extends 'course/layout.html' %}
+
+{% block content %}
+    <div class="form__box">
+        <form action="{% url 'add_book' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form__flex">
+                <div>
+                    <div>{{ form.title }}</div>
+                    <div>{{ form.title.errors }}</div>
+                </div>
+
+                <div>
+                    <div>{{ form.slug }}</div>
+                    <div>{{ form.slug.errors }}</div>
+                </div>
+
+                <div>
+                    <div>{{ form.description }}</div>
+                    <div>{{ form.description.errors }}</div>
+                </div>
+
+                <div>
+                    <div>{{ form.group }}</div>
+                    <div>{{ form.group.errors }}</div>
+                </div>
+
+                <div>
+                    <div>{{ form.subject }}</div>
+                    <div>{{ form.subject.errors }}</div>
+                </div>
+
+                <div>
+                    <div>{{ form.photo }}<label for="id_{{ form.photo.name }}">{{ form.photo.label }}</label></div>
+                    <div>{{ form.photo.errors }}</div>
+                </div>
+
+                <div>
+                    <div>{{ form.pdf_file }}<label for="id_{{ form.pdf_file.name }}">{{ form.pdf_file.label }}<span></span></label></div>
+                    <div>{{ form.pdf_file.errors }}</div>
+                </div>
+
+                <div class="checkbox__label__size"><label for="{{ form.is_published.label }}">Публікація </label>{{ form.is_published }}</div>
+
+
+                <button class="form__submit" type="submit">Додати</button>
+            </div>
+
+
+        </form>
+    </div>
+{% endblock %}

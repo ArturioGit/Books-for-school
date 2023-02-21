@@ -1,0 +1,49 @@
+{% extends 'course/layout.html' %}
+
+{% block content %}
+<div class="profile__box">
+        <div class="profile__img-and-username">
+            <div class="profile__img-box" style="background: url('{{ user.userprofile.image.url }}') 50% no-repeat; background-size: cover;"></div>
+            <div class="profile__username">{{ user.username }}</div>
+        </div>
+        <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+                <div class="form__flex">
+                    <div>
+                        {% if user_form.first_name.errors %}
+                            <div class="input-error">{{ user_form.first_name }}</div>
+                        {% else %}
+                            <div>{{ user_form.first_name }}</div>
+                        {% endif %}
+                        <div>{{ user_form.first_name.errors }}</div>
+                    </div>
+                    <div>
+                        {% if user_form.last_name.errors %}
+                            <div class="input-error">{{ user_form.last_name }}</div>
+                        {% else %}
+                            <div>{{ user_form.last_name }}</div>
+                        {% endif %}
+                        <div>{{ user_form.last_name.errors }}</div>
+                    </div>
+                    <div>
+                        {% if user_form.email.errors %}
+                            <div class="input-error">{{ user_form.email }}</div>
+                        {% else %}
+                            <div>{{ user_form.email }}</div>
+                        {% endif %}
+                        <div>{{ user_form.email.errors }}</div>
+                    </div>
+
+                    <div>
+                        <div>{{ profile_form.image }}<label for="id_{{ profile_form.image.name }}">{{ profile_form.image.label }}</label></div>
+                        <div>{{ profile_form.image.errors }}</div>
+                    </div>
+
+                    <button class="form__submit" type="submit">Змінити</button>
+                </div>
+        </form>
+    <div style="align-self: flex-end;">
+        <a class="logout_button" href="{% url 'logout' %}">Вийти</a>
+    </div>
+</div>
+{% endblock %}

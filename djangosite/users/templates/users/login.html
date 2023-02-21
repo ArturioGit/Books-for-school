@@ -1,0 +1,35 @@
+{% extends 'course/layout.html' %}
+
+{% block content %}
+    <div class="form__box">
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+                <div class="form__flex">
+                    <div>{{ form.non_field_errors }}</div>
+                    <div>
+                        {% if form.username.errors %}
+                            <div class="input-error">{{ form.username }}</div>
+                        {% else %}
+                            <div>{{ form.username }}</div>
+                        {% endif %}
+                        <div>{{ form.username.errors }}</div>
+                    </div>
+
+                    <div>
+                        {% if form.password.errors %}
+                            <div class="input-error">{{ form.password }}</div>
+                        {% else %}
+                            <div>{{ form.password }}</div>
+                        {% endif %}
+                        <div>{{ form.password.errors }}</div>
+                    </div>
+
+                    <button class="form__submit" type="submit">Авторизуватися</button>
+
+                    <div style="text-align:center;font-size:15px;margin-top:15px;">
+                        Нема аккаунту?&nbsp;&nbsp;<a class="small-register-link" href="{% url 'register' %}">Cюди!</a>
+                    </div>
+                </div>
+        </form>
+    </div>
+{% endblock %}

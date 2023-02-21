@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link type="text/css" rel="stylesheet"  href="{% static 'course/css/style.css'%}">
+        <link rel="shortcut icon" href="{% static 'course/images/favicon.png'%}" type="image/png">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>{{ title }}</title>
+
+    </head>
+    <body>
+        <header class="header">
+            <div class="burger__logo">
+                <span></span>
+            </div>
+            <nav class="nav">
+                <ul class="nav__ul">
+                    <li class="nav__li min-lock"><a href="{% url 'home' %}">Головна</a></li>
+                    {% if user.is_authenticated %}
+                        <li class="nav__li"><a href="{% url 'profile' %}">Профіль</a></li>
+                    {% else %}
+                        <li class="nav__li"><a href="{% url 'login' %}">Вхід</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+            <a href="{% url 'home' %}">
+                <img class="logo" src="{% static 'course/images/logo.png'%}"  />
+            </a>
+        </header>
+        <main class="main">
+
+            {% block sidebar %}
+
+            {% endblock sidebar %}
+
+            <article class="content">
+                <h1>{{ title }}</h1>
+                {% block content %}
+
+                {% endblock content %}
+                {% if page_obj.has_other_pages %}
+                <div class="pages__box">
+                    {% for page in paginator.page_range %}
+                        {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+                            {% if page_obj.number == page %}
+                                <div class="page__box page-selected">{{ page }}</div>
+                            {% else %}
+                                <div><a href="?page={{ page }}" class="page__box">{{ page }}</a></div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </article>
+        </main>
+        <script src="{% static 'course/js/script.js'%}"></script>
+        <footer class="footer">
+            Гарних справ!
+        </footer>
+    </body>
+</html>

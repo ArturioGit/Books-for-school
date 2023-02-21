@@ -1,0 +1,25 @@
+{% extends 'course/layout_with_sidebar.html' %}
+
+{% block content %}
+    <div class="courses__box">
+        {% if len_courses == 0 %}
+                <div class="courses__sorry">Нажаль ця сторінка поки що порожня</div>
+        {% else %}
+            {% for course in courses %}
+                <div class="course__box">
+                    <div>
+                        <h2 class="title__course">{{ course.title }}</h2>
+                        <p class="description__book">{{ course.description|truncatechars:55 }}</p>
+                    </div>
+                    <div class="img__center">
+                        <img src="{{ course.photo.url }}" class="book__cover" alt="cover of book">
+                    </div>
+                    <div class="course__tool__box">
+                        <a class="details__button" href="{{ course.get_absolute_url }}">Докладніше</a>
+                        <a class="download__button" href="{{ course.pdf_file.url }}" download>Завантажити</a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
